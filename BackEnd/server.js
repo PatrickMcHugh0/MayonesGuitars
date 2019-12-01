@@ -7,18 +7,18 @@ const PORT = 4000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const mongoDB = 'mongodb://admin:admin123#@ds241408.mlab.com:41408/dm_lab7'
+const mongoDB = 'mongodb+srv://admin:admin@cluster0-oao4y.mongodb.net/test?retryWrites=true&w=majority'
 mongoose.connect(mongoDB, {useNewUrlParser:true});
 
 const Schema = mongoose.Schema;
 
-const movieSchema = new Schema({
-  title:String,
-  year:String,
-  poster:String
+const guitarSchema = new Schema({
+  model:String,
+  colour:String,
+  image:String
 });
 
-const MovieModel = mongoose.model('movie',movieSchema);
+const GuitarModel = mongoose.model('guitar',guitarSchema);
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,18 +37,18 @@ app.get('/', (req, res) => {
   res.send('hello world');
 })
 
-app.get('/api/movies', (req,res,next) => {
+app.get('/api/guitars', (req,res,next) => {
 
   console.log("get request")
-  MovieModel.find((err,data)=>{
-    res.json({movies:data});
+  GuitarModel.find((err,data)=>{
+    res.json({guitars:data});
   })
 })
 
-app.delete('/api/movies/:id', (req,res) =>{
+app.delete('/api/guitars/:id', (req,res) =>{
   console.log(req.params.id);
 
-  MovieModel.deleteOne({_id:req.params.id},(error,data)=>{
+  GuitarModel.deleteOne({_id:req.params.id},(error,data)=>{
     if(error)
       res.json(error);
       
@@ -56,12 +56,12 @@ app.delete('/api/movies/:id', (req,res) =>{
   })
 })
 
-app.get('/api/movies/search/:title/:criteria', (req,res)=>{
-  console.log(req.params.title);
+app.get('/api/guitars/search/:model/:criteria', (req,res)=>{
+  console.log(req.params.model);
   console.log(req.params.criteria);
-if(req.params.criteria == 'title')
+if(req.params.criteria == 'model')
   {
-  MovieModel.find({ 'title': req.params.title},
+  GuitarModel.find({ 'model': req.params.model},
 (error,data) =>{
   res.json(data);
 })
@@ -69,37 +69,37 @@ if(req.params.criteria == 'title')
 })
 
 
-app.post('/api/movies', (req,res) =>{
+app.post('/api/guitars', (req,res) =>{
 console.log('post Sucessfull');
 console.log(req.body)
-console.log(req.body.title);
-console.log(req.body.year);
-console.log(req.body.poster);
+console.log(req.body.model);
+console.log(req.body.colour);
+console.log(req.body.image);
 
-MovieModel.create({
-  title: req.body.title,
-  year: req.body.year,
-  poster: req.body.poster
+GuitarModel.create({
+  model: req.body.model,
+  colour: req.body.colour,
+  image: req.body.image
 });
 res.json('data uploaded')
 
 
 })
 
-app.get('/api/movies/:id',(req,res)=>{
+app.get('/api/guitars/:id',(req,res)=>{
   console.log(req.params.id);
 
-  MovieModel.findById(req.params.id, (err, data)=>{
+  GuitarModel.findById(req.params.id, (err, data)=>{
     res.json(data);
   })
 })
 
 
-app.put('/api/movies/:id', (req, res)=>{
+app.put('/api/guitars/:id', (req, res)=>{
   console.log(req.body);
   console.log("Edit "+req.params.id);
 
-  MovieModel.findByIdAndUpdate(req.params.id,
+  GuitarModel.findByIdAndUpdate(req.params.id,
     req.body, {new:true}, (error, data)=>{
       res.send(data);
     })

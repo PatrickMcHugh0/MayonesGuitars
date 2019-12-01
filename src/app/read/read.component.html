@@ -1,26 +1,26 @@
 <!-- <ul>
-  <li *ngFor="let movie of MyMovies">
-    <p>{{movie.Title}}</p>
-    <p>{{movie.Year}}</p>
-    <img src={{movie.Poster}}>
+  <li *ngFor="let guitar of MyGuitars">
+    <p>{{guitar.Model}}</p>
+    <p>{{guitar.Colour}}</p>
+    <img src={{guitar.Poster}}>
   </li>
 </ul> -->
 
-<mat-accordion *ngFor="let movie of MyMovies">
+<mat-accordion *ngFor="let guitar of MyGuitars">
     <mat-expansion-panel [expanded]="true" >
     <mat-expansion-panel-header>
     <mat-panel-title>
-    <h3> {{ movie.title }} </h3>
+    <h3>Model: {{ guitar.model }} </h3>
     </mat-panel-title>
     <mat-panel-description>
-    <h3>{{ movie.year }}</h3>
+    <h3>Colour: {{ guitar.colour }}</h3>
     </mat-panel-description>
     </mat-expansion-panel-header>
-    <img src="{{movie.poster}}">
+    <img src="{{guitar.image}}">
     <mat-action-row>
-  <button mat-button [routerLink]="['/edit', movie._id]" color="primary">EDIT</button>
+  <button mat-button [routerLink]="['/edit', guitar._id]" color="primary">EDIT</button>
     
-    <button mat-button (click)="onDelete(movie._id)" color="warn">DELETE</button>
+    <button mat-button (click)="onDelete(guitar._id)" color="warn">DELETE</button>
     </mat-action-row>
     </mat-expansion-panel>
     </mat-accordion>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import {Router, ActivatedRoute} from '@angular/router';
-import {MovieServiceService} from '../Services/movie-service.service'
+import {GuitarServiceService} from '../Services/guitar-service.service'
 
 @Component({
   selector: 'app-edit',
@@ -9,22 +9,22 @@ import {MovieServiceService} from '../Services/movie-service.service'
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-movie:any=[];
-  constructor(private movieService:MovieServiceService, private router:Router,
+guitar:any=[];
+  constructor(private guitarService:GuitarServiceService, private router:Router,
     private route:ActivatedRoute) { }
 
   ngOnInit() {
-    this.movieService.GetMovie(this.route.snapshot.params['id']).subscribe(
+    this.guitarService.GetGuitar(this.route.snapshot.params['id']).subscribe(
       (data) =>{
-          this.movie = data;
-          console.log(this.movie);
+          this.guitar = data;
+          console.log(this.guitar);
       }
     );
 
   }
-  onEditMovie(form:NgForm){
-    console.log(form.value.title);
-    this.movieService.UpdateMovie(this.movie._id, form.value.title,
-      form.value.year, form.value.poster).subscribe();
+  onEditGuitar(form:NgForm){
+    console.log(form.value.model);
+    this.guitarService.UpdateGuitar(this.guitar._id, form.value.model,
+      form.value.colour, form.value.image).subscribe();
   }
 }

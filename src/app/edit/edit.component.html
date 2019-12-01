@@ -1,37 +1,36 @@
 <mat-card>
-    <form (submit)="onEditMovie(movieForm)" #movieForm="ngForm">
+    <form (submit)="onEditGuitar(guitarForm)" #guitarForm="ngForm">
       <mat-form-field>
-          <label> Movie Title</label>
-        <input
-          matInput
-          type="text"
-          name="title"
-          ngModel={{movie.title}}
-          required
-          #title="ngModel">
+        <mat-label>Model</mat-label>
+        <select matNativeControl [(ngModel)]="model" name ="model" required>
+          <option value="Duvell">Duvell</option>
+          <option value="Regius">Regius</option>
+          <option value="Hydra">Hydra</option>
+        </select>
       </mat-form-field>
       <mat-form-field>
-          <label>Movie Year</label>
+          <label>Guitar Colour</label>
         <textarea
           matInput
-          name="year"
-          ngModel={{movie.year}}
+          name="colour"
+          ngModel={{guitar.colour}}
           required
           #content="ngModel"></textarea>
       </mat-form-field>
       <mat-form-field>
-          <label>Movie Poster</label>
-        <textarea
-          matInput
-         rows="4"
-          name="poster"
-          ngModel={{movie.poster}}
-          required
-          #content="ngModel"></textarea>
+        <mat-label>Image</mat-label>
+        <select matNativeControl [(ngModel)]="image" name ="image" required>
+          <option value="https://mayones.com/wp-content/uploads/2016/12/mayones_duvell_elite_6_1600.jpg">Dirty Blue Burst Duvell</option>
+          <option value="https://mayones.com/wp-content/uploads/2017/04/duvell_elite_6_dirty_purple_blue_burst_1600_front.jpg">Dirty Purple Burst Duvell</option>
+          <option value="https://mayones.com/wp-content/uploads/2016/12/mayones_regius_6_1600.jpg">Dirty Blue Burst Regius</option>
+          <option value="https://mayones.com/wp-content/uploads/2017/04/regius_6_graphite_1600_front.jpg">Trans Grey Regius</option>
+          <option value="https://mayones.com/wp-content/uploads/2017/07/hydra_elite_ep_7_1600_front.jpg">Purple Hydra</option>
+          <option value="https://mayones.com/wp-content/uploads/2019/02/hydra_elite_vf_6_1600_front.jpg">Blue Green Burst Hydra</option>
+        </select>
       </mat-form-field>
       <button
         mat-raised-button
         color="accent"
-        type="submit">Edit Movie</button>
+        type="submit">Edit Guitar</button>
     </form>
   </mat-card>

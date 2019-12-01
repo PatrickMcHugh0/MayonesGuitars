@@ -1,48 +1,62 @@
 <mat-card>
-    <form (submit)="onAddMovie(movieForm)" #movieForm="ngForm">
-      <mat-form-field>
-          <label> Movie Title</label>
+    <form (submit)="onAddGuitar(guitarForm)" #guitarForm="ngForm">
+      <!--<mat-form-field>
+          <label> Guitar Model</label>
         <input
           matInput
           type="text"
-          name="title"
+          name="model"
           ngModel
           required
-          #title="ngModel">
-      </mat-form-field>
+          #model="ngModel">
+      </mat-form-field>-->
+
+
+     
       <mat-form-field>
-          <label>Movie Year</label>
+        <mat-label>Model</mat-label>
+        <select matNativeControl [(ngModel)]="model" name ="model" required>
+          <option value="Duvell">Duvell</option>
+          <option value="Regius">Regius</option>
+          <option value="Hydra">Hydra</option>
+        </select>
+      </mat-form-field>
+
+      <mat-form-field>
+          <label>Guitar Colour</label>
         <textarea
           matInput
-          name="year"
+          name="colour"
           ngModel
           required
           #content="ngModel"></textarea>
       </mat-form-field>
-      <mat-form-field>
-          <label>Movie Poster</label>
+     <!-- <mat-form-field>
+          <label>Guitar Image</label>
         <textarea
           matInput
          rows="4"
-          name="poster"
+          name="image"
           ngModel
           required
           #content="ngModel"></textarea>
-      </mat-form-field>
+      </mat-form-field>-->
+
       <mat-form-field>
-        <input  
-        matInput 
-        name="date" 
-        ngModel
-        [matDatepicker]="picker" 
-        placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        
+        <mat-label>Image</mat-label>
+        <select matNativeControl [(ngModel)]="image" name ="image" required>
+          <option value="https://mayones.com/wp-content/uploads/2016/12/mayones_duvell_elite_6_1600.jpg">Dirty Blue Burst Duvell</option>
+          <option value="https://mayones.com/wp-content/uploads/2017/04/duvell_elite_6_dirty_purple_blue_burst_1600_front.jpg">Dirty Purple Burst Duvell</option>
+          <option value="https://mayones.com/wp-content/uploads/2016/12/mayones_regius_6_1600.jpg">Dirty Blue Burst Regius</option>
+          <option value="https://mayones.com/wp-content/uploads/2017/04/regius_6_graphite_1600_front.jpg">Trans Grey Regius</option>
+          <option value="https://mayones.com/wp-content/uploads/2017/07/hydra_elite_ep_7_1600_front.jpg">Purple Hydra</option>
+          <option value="https://mayones.com/wp-content/uploads/2019/02/hydra_elite_vf_6_1600_front.jpg">Blue Green Burst Hydra</option>
+        </select>
       </mat-form-field>
+     
       <button
         mat-raised-button
         color="accent"
-        type="submit">Save Movie</button>
+        type="submit">Save Guitar</button>
     </form>
   </mat-card>

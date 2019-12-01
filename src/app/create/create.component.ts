@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { MovieServiceService } from '../Services/movie-service.service';
+import { GuitarServiceService } from '../Services/guitar-service.service';
 
 
 @Component({
@@ -10,12 +10,14 @@ import { MovieServiceService } from '../Services/movie-service.service';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private movieService: MovieServiceService) { }
+  constructor(private guitarService: GuitarServiceService) { }
+
+  model:string;
 
   ngOnInit() {
   }
   myDate : Date;
-  onAddMovie(form: NgForm) {
+  onAddGuitar(form: NgForm) {
     
     if(!form.valid)
     {
@@ -27,8 +29,8 @@ export class CreateComponent implements OnInit {
     this.myDate = new Date(form.value.date);
     console.log(this.myDate);
 
-    this.movieService.AddMovieInformation(form.value.title,
-      form.value.year, form.value.poster).subscribe(
+    this.guitarService.AddGuitarInformation(form.value.model,
+      form.value.colour, form.value.image).subscribe(
         ()=>{
           //do something after out operation has finished
         }
@@ -38,3 +40,4 @@ export class CreateComponent implements OnInit {
   }
 
 }
+  
